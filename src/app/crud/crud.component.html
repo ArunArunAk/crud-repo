@@ -1,0 +1,24 @@
+<h1>Http Crud</h1>
+{{todo }}
+<div >
+<div class="container">   
+    <button class="btn btn-success  " *ngIf="!showadd && !todo" (click)="add()">Add </button>
+    <button class="btn btn-danger" *ngIf="showadd || todo" (click)="back()">back</button>
+    <button class="btn btn-secondary"*ngIf="!todos" (click)="getData()">get All data </button>
+   {{message}}
+
+   <div class="todocontainer"*ngIf="!showadd && !todo ; else todotemplate" >
+    <div *ngFor="let todo of todos;let i = index">
+        <div (click)="openTodo(todo) "  class="text-black">{{i+1}}:{{todo.title}}</div>
+    </div>
+   </div>
+
+</div>
+</div>
+<ng-template #todotemplate>
+    <div>
+        <input class="text-primary" [(ngModel)]="todo.title">
+        <button class="btn-danger" *ngIf="todo.id" (click)="delete()">Delete</button>
+        <button (click)="save()" class="btn btn-primary">save</button>
+    </div>
+</ng-template>

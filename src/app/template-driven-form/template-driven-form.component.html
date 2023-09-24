@@ -1,0 +1,141 @@
+
+
+
+
+<h3>template-driven-form works!</h3>
+<div class="container">
+   
+    <!-- //ngform take under angular form -->
+    <form  #contactform="ngForm" (submit)="onsubmit(contactform)"> 
+        <p>
+            <!-- pattern="^[a-zA-Z-' ]{2,}$ -->
+            <label for="firstName">firstName</label>
+            <input  required  minlength="10" 
+             type="text" name="firstName" pattern="^[a-zA-Z-' ]{2,}$ " id="firstName" [(ngModel)]="contact.firstName" #firstName="ngModel" > <br>
+            <span *ngIf="firstName.invalid && firstName.touched">
+                <span class="text-danger"*ngIf="firstName.errors?.['minlength']"> minimun 10 letters</span>
+                 <span class="text-danger"*ngIf="firstName.errors?.['required'] "> First name required</span>            
+                 <span class="text-danger"*ngIf="firstName.errors?.['pattern'] "> minimun 1 upper 1 lower</span>            
+
+            </span>
+            <!-- //succesfull span -->
+                <span class="text-success" *ngIf="firstName.valid && firstName.touched">Successfully!</span>
+
+                                                                        
+        </p>
+        <!-- //controller take by each areaa using ngmodel -->
+        <p>
+            <label for="LastName">LastName</label>
+            <input  type="text" name="LastName" id="LastName" [(ngModel)]="contact.lastName" #lastName="ngModel"><br>
+            <span *ngIf="lastName.invalid && lastName.touched">* Please enter a valid last name</span>
+
+        </p>
+        
+        <p>
+            <label for="email">email</label>
+            <input pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$
+            "  type="email" name="email" id="email" [(ngModel)]="contact.Email" #Email="ngModel"><br>
+            <span *ngIf="Email.invalid && Email.touched">* Please enter a valid first name</span>
+
+        </p>
+
+        <p>
+            <label for="phone">phone</label>
+            <input pattern="^[6-9]\d{9}$ "  type="number" name="phone" id="phone" ngModel #phone="ngModel"><br>
+            <span *ngIf="phone.invalid && phone.touched">* Please enter a valid phone num</span>
+
+        </p>
+        
+        <p>
+            <label for="gender">gender</label>
+            <input type="radio" value="male" name="gender" id="gender" [(ngModel)]="contact.Gender">male
+            <input type="radio" value="female " name="gender" id="gender" [(ngModel)]="contact.Gender">female<br>
+            <span>*please enter valid data</span>
+
+        
+        </p>
+        
+        <p>
+            <label for="isMarried">isMarried</label>
+            <input type="checkbox" name="isMarried" id="isMarried" [(ngModel)]="contact.isMarried"><br>
+            <span>*please enter valid data</span>
+
+        </p>
+        
+        <p>
+            <!--  -->
+            <label for="country">country</label>
+            <select name="country" id="country" [(ngModel)]="contact.Country">
+                <option selected=""  value="">Select</option>
+                <option [ngValue]="country.id" *ngFor="let country of countrylist" >
+                    {{country.name}}
+                </option>
+            </select>
+        </p>
+ <div ngModelGroup="address">
+    <p>
+        <label for="city">city</label>
+        <input type="text" name="city" id="city" [(ngModel)]="contact.Address.City">
+    </p>
+    <p>
+        <label for="Street">Street</label>
+        <input type="text" name="Street" id="Street"  [(ngModel)]="contact.Address.Street">
+    </p>
+
+    <p>
+        <!-- regex pattern for password in single line ask in chatfgpt -->
+        <label for="pincode">password</label>
+        <input pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-])(?!.*\s).{8,}$
+        "  type="password" name="password" id="password"  [(ngModel)]="contact.Address.Pincode" #password="ngModel"><br>
+        <span *ngIf="password.invalid && password.touched">* Please enter valid password</span>
+
+    </p>
+
+    
+    
+ </div>
+ <!-- [disabled]="contactform.invalid" -->
+        <p>
+            <!-- <button [disabled]="!contactform.valid" class="btn btn-primary" type="submit" >submit</button> -->
+            <button  class="btn btn-primary" [disabled]="!contactform.valid" >submit</button>
+
+            <!-- [disabled]="contactform.invalid" -->
+        </p>
+        
+        </form>
+</div>
+
+<!-- <div *ngFor="let data of datas">
+    <h3>{{data}}</h3>
+</div>
+ -->
+ <!-- <h3>{{contact.firstName}}</h3>
+ <h1>{{contact.firstName}}</h1>
+ <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">s.no</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Lastname</th>
+        <th scope="col">Email</th>
+      
+
+      </tr>
+    </thead>
+    <tbody>
+            <tr >
+                <td>{{1}}</td>
+
+                <td>{{contact.firstName}}</td>
+                <td>{{contact.lastName}}</td>
+                <td>{{contact.Email}}</td>
+
+        
+            </tr>
+     
+      
+    </tbody>
+  </table>
+
+
+  -->

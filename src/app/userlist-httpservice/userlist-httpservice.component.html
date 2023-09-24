@@ -1,0 +1,49 @@
+
+
+
+
+
+  <!-- <app-userlist-httpservice></app-userlist-httpservice> -->
+  
+  <div class="container">
+    <h3>Add User</h3>
+    <form [formGroup]="userform" (submit)="onclick()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" placeholder="Enter name" formControlName="name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+      </div>
+      <button type="submit" class="btn btn-primary">Add User</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h3>User List</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>
+            <button class="btn btn-info" (click)="onEdit(user)">Edit</button>
+            <button class="btn btn-danger" (click)="onDelete(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+

@@ -1,0 +1,62 @@
+<p>testing works!</p>
+
+<form [formGroup]="skillsForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="name">Name </label>
+    <input type="text" id="name" name="name" formControlName="name" />
+  </p>
+
+  Skills:
+  <div formArrayName="skills">
+    <div *ngFor="let skill of skills1.controls; let i = index">
+      <div [formGroupName]="i">
+        {{ i }}
+        skill name:
+        <input type="text" formControlName="skill" />
+        exp:
+        <input type="text" formControlName="exp" />
+
+        <button (click)="removeSkill(i)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <p><button type="submit">Submit</button><br /></p>
+</form>
+
+<p>
+  <button type="button" (click)="addSkills()">Add</button>
+  <button (click)="deleteAll()">Delete All</button>
+</p>
+
+<!-- {{this.skillsForm.value | json}} -->
+
+<div class="container">
+    <form [formGroup]="moviesForm" (ngSubmit)="enter()">
+
+  <h1>Cine Facts</h1>
+  <p>enter the movie facts</p>
+
+  <div formArrayName="MoviesDetail">
+    <div *ngFor="let skill of moviesDetailss.controls; let i = index">
+      <div [formGroupName]="i">
+        {{ i }}
+        MovieCollection :
+        <input type="text" formControlName="MovieCollection" /><br>
+        moviesStatus:
+        <input type="text" formControlName="moviesStatus" /><br>
+
+        <button (click)="removemovie(i)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <p><button type="submit">Submit</button><br /></p>
+
+</form>
+<p>
+  <button type="button" (click)="addmoviesDetail()">Add</button>
+  <button (click)="deleteAllmovies()">Delete All</button>
+</p>
+</div>
+

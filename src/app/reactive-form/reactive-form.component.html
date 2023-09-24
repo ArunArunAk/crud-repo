@@ -1,0 +1,122 @@
+<div class="container">
+  <h1>Reactive Form</h1>
+
+  <form [formGroup]="contactform" (submit)="OnSubmit()">
+    <p>
+      <label for="firstName">firstName</label>
+      <input type="text" name="firstName" id="firstName" formControlName="FirstName"
+      />
+      <br />
+      <!-- <span *ngIf="!contactform.controls.FirstName.valid && contactform.controls.FirstName.touched">
+                firstName need
+            </span> -->
+
+      <!-- //another method to call error
+            1.  //why u give question mark here "?" .when this error came-Object is possibly 'null'..just use it "?".
+            2.errors?--why use error not being null go check propertiey on inspect
+
+            3.firstnameMethod==contactform.controlss
+             -->
+      <span *ngIf="!firstnameMethod?.valid && firstnameMethod?.touched">
+        <span class="text-danger" *ngIf="firstnameMethod?.errors?.['required']">
+          FirstName Required
+        </span>
+          <span class="text-danger" *ngIf="firstnameMethod?.errors?.['minlength']" >minimum 10 Required
+          </span>
+      </span>
+      <span class="text-success" *ngIf="firstnameMethod?.valid"> success </span>
+    </p>
+
+    <p>
+      <label for="LastName">LastName</label>
+      <input type="text"name="LastName"id="LastName"formControlName="LastName" /><br />
+
+      <span *ngIf="!lastnameMethod?.valid && lastnameMethod?.touched">
+        <span class="text-danger" *ngIf="lastnameMethod?.errors?.['required']">
+          LastName Required
+        </span>
+        <span class="text-danger" *ngIf="lastnameMethod?.errors?.['maxlength']">
+          Maximum 5 characters allowed
+        </span>
+      </span>
+      <span class="text-success" *ngIf="lastnameMethod?.valid"> success </span>
+    </p>
+
+    <p>
+      <label for="email">email</label>
+      <input pattern="^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$ "type="email"name="email"id="email"formControlName="Email" /><br />
+    </p>
+
+    <p>
+      <label for="phone">phone</label>
+      <input pattern="^[6-9]\d{9}$ "type="number" name="phone"id="phone"formControlName="phone"/><br />
+    </p>
+
+    <p>
+      <label for="gender">gender</label>
+      <input type="radio" value="male" name="gender" id="gender" formControlName="gender" />male
+      <input type="radio"value="female "name="gender"id="gender"formControlName="gender"/>female<br />
+    </p>
+
+    <p>
+      <label for="isMarried">isMarried</label>
+      <input type="checkbox" name="isMarried" id="isMarried" formControlName="IsMarried" /><br />
+
+      <span *ngIf="!marriedstatus?.valid && marriedstatus?.touched">
+        <span class="text-danger" *ngIf="marriedstatus?.errors?.['required']">
+          married Required
+        </span>
+      </span>
+      <span class="text-success" *ngIf="marriedstatus?.valid"> success </span>
+    </p>
+
+    <p>
+      <!--  -->
+      <label for="country">country</label>
+      <select name="country" id="country" formControlName="Country">
+        <option value="1">Us</option>
+        <option value="2">Cannada</option>
+        <option value="3">India</option>
+      </select>
+    </p>
+    <div formGroupName="Address">
+      <p>
+        <label for="city">city</label>
+        <input type="text" name="city" id="city" formControlName="city" />
+
+        <span *ngIf="!cityconfirm?.valid && cityconfirm?.touched">
+          <span class="text-danger" *ngIf="cityconfirm?.errors?.['required']">
+            cityname Required
+          </span>
+        </span>
+        <span class="text-success" *ngIf="cityconfirm?.valid"> success </span>
+      </p>
+      <p>
+        <label for="Street">Street</label>
+        <input type="text" name="Street" id="Street" formControlName="Street" />
+        <span *ngIf="!Streetconfirm?.valid && Streetconfirm?.touched">
+          <span class="text-danger" *ngIf="Streetconfirm?.errors?.['required']">
+            Streetname Required
+          </span>
+        </span>
+        <span class="text-success" *ngIf="Streetconfirm?.valid"> success </span>
+      </p>
+
+      <p>
+        <!-- regex pattern for password in single line ask in chatfgpt -->
+        <label for="password">password</label>
+        <input
+          pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\-])(?!.*\s).{8,}$ "
+          type="password"name="password"id="password"formControlName="password" /><br />
+      </p>
+    </div>
+    <p>
+      <button class="btn btn-primary" [disabled]="!contactform.valid">
+        submit
+      </button>
+    </p>
+
+  
+
+   
+   
